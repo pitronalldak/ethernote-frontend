@@ -63,13 +63,13 @@
   height: 100%;
 }
 .historyStepContainer.done {
-  background: transparent url("/img/historyDone.png") no-repeat left top;
+  background: transparent url("../img/historyDone.png") no-repeat left top;
 }
 .historyStepContainer.inProgress {
-  background: transparent url("/img/historyInProgress.png") no-repeat left top;
+  background: transparent url("../img/historyInProgress.png") no-repeat left top;
 }
 .historyStepContainer.notStarted {
-  background: transparent url("/img/historyNotStarted.png") no-repeat left top;
+  background: transparent url("../img/historyNotStarted.png") no-repeat left top;
 }
 .historyLineContainer {
   margin-top: 17px;

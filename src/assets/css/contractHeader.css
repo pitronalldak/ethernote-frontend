@@ -15,13 +15,13 @@
   color: rgb(68,68,68);
   margin-bottom: 40px;
   overflow: hidden;
-  background: transparent url("/img/logoHelloSign.png") no-repeat right center;
+  background: transparent url("../img/logoHelloSign.png") no-repeat right center;
 }
 .contractHeaderTitleContainer.hellosign {
-  background: transparent url("/img/logoHelloSign.png") no-repeat right center;
+  background: transparent url("../img/logoHelloSign.png") no-repeat right center;
 }
 .contractHeaderTitleContainer.ethereum {
-  background: transparent url("/img/logoEthereum.png") no-repeat right center;
+  background: transparent url("../img/logoEthereum.png") no-repeat right center;
 }
 .contractHeaderTitle {
   font-size: 24px;
