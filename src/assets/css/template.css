@@ -43,13 +43,12 @@
   margin-bottom: 40px;
 }
 .templateVariable {
-  padding: 0 3px;
-  margin: 0 3px;
+  padding: 3px;
+  margin: 3px;
   border-radius: 2px;
+  background: rgb(237,237,237);
   border: 1px solid rgb(231,231,231);
-  min-width: 40px;
-  text-align: center;
-  display: inline-block;
+  width: 30px;
 }
 .templateVariable.active {
   padding: 5px;

@@ -40,11 +40,6 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 );
 
 class BorrowerFormComponent extends Component {
-    state = {showModal: false};
-
-    handleChangeDate = (date) => {
-        this.setState({date})
-    };
 
     render() {
         return (
@@ -54,7 +49,7 @@ class BorrowerFormComponent extends Component {
                         <label className="inputVarLabel">Currency</label>
                         <div>
                             <Field name="currency" component="select" type="currency" className="inputVar">
-                                <option selected="" value=""></option>
+                                <option defaultValue="" value=""></option>
                                 <option value="USD">USD</option>
                                 <option value="EUR">EUR</option>
                             </Field>
@@ -70,9 +65,9 @@ class BorrowerFormComponent extends Component {
                     <div className="inputVarContainer undefined">
                         <label className="inputVarLabel">Date Due</label>
                         <DatePicker
-                            selected={this.state.date}
+                            selected={this.props.date}
                             className="inputVar"
-                            onChange={this.handleChangeDate}
+                            onChange={this.props.handleChangeDate}
                         />
                     </div>
                     <div className="submitContainer">

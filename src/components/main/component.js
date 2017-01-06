@@ -1,9 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import { browserHistory } from 'react-router'
 import { bindActionCreators } from 'redux';
+import  moment  from 'moment';
 
 import BorrowerFormComponent from './borrowerFormComponent';
-import BorrowerModalComponent from './borrowerModalComponent';
 import LenderFormComponent from './lenderFormComponent';
 
 import Actions from '../../actions/main';
@@ -19,6 +20,7 @@ class MainComponent extends Component {
 
     handleSubmitLenderForm = () => {
         this.setState({step: 3});
+        browserHistory.push('doc/de84ace63b18eb749b2ba97cf20fbec93d3ede1cddc0d57a5a8a01523475f453');
     };
 
     renderTemplateContainer = () => {
@@ -38,41 +40,46 @@ class MainComponent extends Component {
                             </div>
                             <div className="templateHeaderContainerColumn right">
                                 <div>
-                                    <span className={step ===1 ? 'templateVariable': null}>
-                                        {borrowerForm.values ? borrowerForm.values.currency || undefined : undefined }
+                                    <span className={step ===1 ? 'templateVariable active': null}>
+                                        {borrowerForm.values ? borrowerForm.values.currency || 'Currency' : 'Currency' }
                                     </span>
-                                    <span className={step ===1 ? 'templateVariable': null}>
-                                        {borrowerForm.values ? borrowerForm.values.value || undefined: undefined}
+                                    <span className={step ===1 ? 'templateVariable active': null}>
+                                        &nbsp;
+                                        {borrowerForm.values ? borrowerForm.values.value || 'Value' : 'Value' }
                                     </span>
                                 </div>
                                 <div>
-                                    <span></span>
+                                    <span>
+                                        {moment(Date.now()).format('DD.MM.YYYY, h:mm')}
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div className="templateStatementContainer">
                             <div>
                                 For value received
-                                <span className={step ===1 ? 'templateVariable': null}>
-                                    {borrowerForm.values ? borrowerForm.values.lastName || undefined: undefined}
+                                <span className={step ===1 ? 'templateVariable active': null}>
+                                    &nbsp;
+                                    {borrowerForm.values ? borrowerForm.values.lastName || 'Borrower Last Name' : 'Borrower Last Name'}
                                 </span>
-                                <span className={step ===1 ? 'templateVariable': null}>
-                                    {borrowerForm.values ? borrowerForm.values.firstName || undefined: undefined}
-                                </span>  ,
-                                <span className={step ===1 ? 'templateVariable': null}>
-                                    {borrowerForm.values ? borrowerForm.values.borrowerId || undefined: undefined}
-                                </span>
-                            </div>
-                            <div>
-                                <span className="templateFieldLabel">Address</span>:
-                                <span className={step ===1 ? 'templateVariable': null}>
-                                    {borrowerForm.values ? borrowerForm.values.address || undefined: undefined}
+                                <span className={step ===1 ? 'templateVariable active': null}>
+                                    &nbsp;
+                                    {borrowerForm.values ? borrowerForm.values.firstName || 'Borrower First Name' : 'Borrower First Name'}
+                                </span>,&nbsp;
+                                <span className={step ===1 ? 'templateVariable active': null}>
+                                    {borrowerForm.values ? borrowerForm.values.borrowerId || 'Borrower ID' : 'Borrower ID'}
                                 </span>
                             </div>
                             <div>
-                                <span className="templateFieldLabel">Email</span>:
-                                <span className={step ===1 ? 'templateVariable': null}>
-                                    {borrowerForm.values ? borrowerForm.values.email || undefined: undefined}
+                                <span className="templateFieldLabel">Address</span>:&nbsp;
+                                <span className={step ===1 ? 'templateVariable active': null}>
+                                    {borrowerForm.values ? borrowerForm.values.address || "Borrower's Address" : "Borrower's Address"}
+                                </span>
+                            </div>
+                            <div>
+                                <span className="templateFieldLabel">Email</span>:&nbsp;
+                                <span className={step ===1 ? 'templateVariable active': null}>
+                                    {borrowerForm.values ? borrowerForm.values.email || "Borrower's Email" : "Borrower's Email"}
                                 </span>
                             </div>
                             {lenderForm ?
@@ -83,50 +90,52 @@ class MainComponent extends Component {
                                         promises to pay
                                     </div>
                                     <div>
-                                        <span className="templateVariable">
-                                            {lenderForm.values ? lenderForm.values.lastName || undefined: undefined}
+                                        <span className="templateVariable active">
+                                            &nbsp;
+                                            {lenderForm.values ? lenderForm.values.lastName || "Lender's Last Name" : "Lender's Last Name"}
                                         </span>
-                                        <span className="templateVariable">
-                                            {lenderForm.values ? lenderForm.values.firstName || undefined: undefined}
-                                        </span>  ,
-                                        <span className="templateVariable">
-                                            {lenderForm.values ? lenderForm.values.lenderId || undefined: undefined}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span className="templateFieldLabel">Address</span>:
-                                        <span className="templateVariable">
-                                            {lenderForm.values ? lenderForm.values.address || undefined: undefined}
+                                        <span className="templateVariable active">
+                                            &nbsp;
+                                            {lenderForm.values ? lenderForm.values.firstName || "Lender's First Name" : "Lender's First Name"}
+                                        </span> ,&nbsp;
+                                        <span className="templateVariable active">
+                                            {lenderForm.values ? lenderForm.values.lenderId || "Lender ID" : "Lender ID"}
                                         </span>
                                     </div>
                                     <div>
-                                        <span className="templateFieldLabel">Email</span>:
-                                        <span className="templateVariable">
-                                            {lenderForm.values ? lenderForm.values.email || undefined: undefined}
+                                        <span className="templateFieldLabel">Address</span>:&nbsp;
+                                        <span className="templateVariable active">
+                                            {lenderForm.values ? lenderForm.values.address || "Lender's Address" : "Lender's Address"}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className="templateFieldLabel">Email</span>:&nbsp;
+                                        <span className="templateVariable active">
+                                            {lenderForm.values ? lenderForm.values.email || "Lender's Email": "Lender's Email"}
                                         </span>
                                     </div>
                                 </div> : null
                             }
                         </div>
-                        {/*<!--<span class="templateFieldLabel">Email</span>:*/}
-                        {/*<span id="$Lenders_Email" class="templateVariable"></span><br/>*/}
-                        {/*<span class="templateFieldLabel">Bitcoin Wallet</span>:*/}
-                        {/*<span id="$Lenders_Bitcoin_Address" class="templateVariable"></span>-->*/}
                         <div>
                             The principal amount of
-                            <span className="templateVariable">
-                                {borrowerForm.values ? borrowerForm.values.currency || undefined : undefined }
+                            <span className={step ===1 ? 'templateVariable active': null}>
+                                &nbsp;
+                                {borrowerForm.values ? borrowerForm.values.currency || "Currency" : "Currency" }
                             </span>
-                            <span className="templateVariable">
-                                {borrowerForm.values ? borrowerForm.values.value || undefined: undefined}
-                            </span> , with interest at the annual rate of
-                            <span className="templateVariable">
-                                {borrowerForm.values ? borrowerForm.values.percents || undefined: undefined}
+                            <span className={step ===1 ? 'templateVariable active': null}>
+                                &nbsp;
+                                {borrowerForm.values ? borrowerForm.values.value || "Value" : "Value"}
+                            </span>, with interest at the annual rate of
+                            <span className={step ===1 ? 'templateVariable active': null}>&nbsp;
+                                {borrowerForm.values ? borrowerForm.values.percents || "Percents": "Percents"}
                             </span> percent on any unpaid balance.
                         </div>
                         <div>
                             Payment on this note is due and payable to Lender in full on or before
-                            <span className="templateVariable"></span> .
+                            <span className={step ===1 ? 'templateVariable active': null}>&nbsp;
+                                {this.props.date ? moment(this.props.date).format('DD.MM.YYYY') : "Date Due" }
+                            </span> .
                         </div>
                         <div>
                             This note may be prepaid in whole or in part at any time without penalty. If Lender prevails in a lawsuit to collect on this note,
@@ -147,6 +156,7 @@ class MainComponent extends Component {
 
 
     render() {
+        const {date, handleChangeDate} = this.props;
         return (
             <div className="mainContainer">
                 {this.renderTemplateContainer()}
@@ -157,6 +167,8 @@ class MainComponent extends Component {
                             {this.state.step === 1 ?
                                 <BorrowerFormComponent
                                     onSubmit={this.handleSubmitBorrowerForm}
+                                    date={date}
+                                    handleChangeDate={handleChangeDate}
                                 /> :
                                 this.state.step === 2 ?
                                     <LenderFormComponent
@@ -167,7 +179,7 @@ class MainComponent extends Component {
                         </div>
                     </div>
                 </div>
-                <BorrowerModalComponent show={this.state.showBorrowerModal}/>
+                {/*<BorrowerModalComponent show={this.state.showBorrowerModal}/>*/}
             </div>
         );
     }
@@ -175,13 +187,17 @@ class MainComponent extends Component {
 
 MainComponent.PropTypes = {
     borrowerForm: PropTypes.object,
-    lenderForm: PropTypes.object
+    lenderForm: PropTypes.object,
+    date: PropTypes.object,
+    handleChangeDate: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
     borrowerForm: state.form.borrowerForm,
-    lenderForm: state.form.lenderForm
+    lenderForm: state.form.lenderForm,
+    date: state.main.date
 });
-// const mapDispatchToProps = (dispatch) => (bindActionCreators(new Actions,dispatch));
 
-export default connect(mapStateToProps)(MainComponent);
+const mapDispatchToProps = (dispatch) => (bindActionCreators(new Actions,dispatch));
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainComponent);

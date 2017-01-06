@@ -9,8 +9,8 @@ const validate = values => {
     if (!values.firstName) {
         errors.firstName = 'First name is required'
     }
-    if (!values.borrowerId) {
-        errors.lenderId = 'Lendeer ID is required'
+    if (!values.lenderId) {
+        errors.lenderId = 'Lender ID is required'
     }
     if (!values.address) {
         errors.address = 'Address is required'
@@ -38,9 +38,8 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 );
 
 const LenderFormComponent = (props) => {
-    const { handleSubmit } = props;
     return (
-        <form className="templateEditorForm" onSubmit={handleSubmit}>
+        <form className="templateEditorForm" onSubmit={props.handleSubmit(props.onSubmit)}>
             <Field name="lastName" type="text" component={renderField} label="Last Name"/>
             <Field name="firstName" type="text" component={renderField} label="First Name"/>
             <Field name="lenderId" type="text" component={renderField} label="Lender ID"/>

@@ -1,8 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import Actions from '../../actions/main';
 
 class DocComponent extends Component {
         render() {
@@ -241,6 +238,5 @@ DocComponent.PropTypes = {
 const mapStateToProps = (state) => ({
     borrowerForm: state.form.borrowerForm,
 });
-// const mapDispatchToProps = (dispatch) => (bindActionCreators(new Actions,dispatch));
 
 export default connect(mapStateToProps)(DocComponent);

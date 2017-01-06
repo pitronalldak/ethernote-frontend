@@ -24,18 +24,3 @@ $ `npm run build` (use GitBash on Windows / Terminal on OSX) in the directory of
 This should be used every time when you start working on the project:
 
 $ `npm start` (use GitBash on Windows / Terminal on OSX) in the directory of the project
-
-
-## Main features:
-
-You can:
-
-- Upload products, customize title, price and amount.
-
-User can:
-
-- Insert money.
-
-- Select product.
-
-- Return delivery.
