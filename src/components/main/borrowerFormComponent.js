@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Field, reduxForm } from 'redux-form'
+import DatePicker from 'react-datepicker';
+import BorrowerModalComponent from './borrowerModalComponent';
 
 const validate = values => {
     const errors = {};
@@ -27,41 +29,67 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
     <div className="inputVarContainer undefined">
         <label className="inputVarLabel">{label}</label>
         <div>
-            <input {...input} type={type} className="inputVar"/>
+            <input
+                {...input}
+                type={type}
+                className="inputVar"
+                placeholder={touched ? error : null}
+            />
         </div>
     </div>
 );
 
-const BorrowerFormComponent = (props) => {
-    const { handleSubmit } = props;
-    return (
-        <form className="templateEditorForm" onSubmit={handleSubmit}>
-            <div className="inputVarContainer undefined">
-                <label className="inputVarLabel">Currency</label>
-                <div>
-                    <Field name="currency" component="select" type="currency" className="inputVar">
-                        <option selected="" value=""></option>
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                    </Field>
-                </div>
+class BorrowerFormComponent extends Component {
+    state = {showModal: false};
+
+    handleChangeDate = (date) => {
+        this.setState({date})
+    };
+
+    render() {
+        return (
+            <div>
+                <form className="templateEditorForm" onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+                    <div className="inputVarContainer undefined">
+                        <label className="inputVarLabel">Currency</label>
+                        <div>
+                            <Field name="currency" component="select" type="currency" className="inputVar">
+                                <option selected="" value=""></option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </Field>
+                        </div>
+                    </div>
+                    <Field name="value" type="number" component={renderField} label="Value"/>
+                    <Field name="lastName" type="text" component={renderField} label="Last Name"/>
+                    <Field name="firstName" type="text" component={renderField} label="First Name"/>
+                    <Field name="borrowerId" type="text" component={renderField} label="Borrower ID"/>
+                    <Field name="address" type="text" component={renderField} label="Address"/>
+                    <Field name="email" type="text" component={renderField} label="Email"/>
+                    <Field name="percents" type="number" component={renderField} label="Percents"/>
+                    <div className="inputVarContainer undefined">
+                        <label className="inputVarLabel">Date Due</label>
+                        <DatePicker
+                            selected={this.state.date}
+                            className="inputVar"
+                            onChange={this.handleChangeDate}
+                        />
+                    </div>
+                    <div className="submitContainer">
+                        <button type="submit" className="submit">Create</button>
+                    </div>
+                </form>
+                {/*<BorrowerModalComponent*/}
+                    {/*show={this.state.showModal}*/}
+                    {/*onHide={this.onHideModal}*/}
+                {/*/>*/}
             </div>
-            <Field name="value" type="number" component={renderField} label="Value"/>
-            <Field name="lastName" type="text" component={renderField} label="Last Name"/>
-            <Field name="firstName" type="text" component={renderField} label="First Name"/>
-            <Field name="borrowerId" type="text" component={renderField} label="Borrower ID"/>
-            <Field name="address" type="text" component={renderField} label="Address"/>
-            <Field name="email" type="text" component={renderField} label="Email"/>
-            <Field name="percents" type="number" component={renderField} label="Percents"/>
-            <Field name="date" type="text" component={renderField} label="Date Due"/>
-            <div className="submitContainer">
-                <button type="submit" className="submit">Create</button>
-            </div>
-        </form>
-    )
+        )
+    }
 };
 
 export default reduxForm({
     form: 'borrowerForm',
+    destroyOnUnmount: false,
     validate,
 })(BorrowerFormComponent)

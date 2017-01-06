@@ -10,7 +10,7 @@ const validate = values => {
         errors.firstName = 'First name is required'
     }
     if (!values.borrowerId) {
-        errors.borrowerId = 'Borrower ID is required'
+        errors.lenderId = 'Lendeer ID is required'
     }
     if (!values.address) {
         errors.address = 'Address is required'
@@ -27,7 +27,12 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
     <div className="inputVarContainer undefined">
         <label className="inputVarLabel">{label}</label>
         <div>
-            <input {...input} type={type} className="inputVar"/>
+            <input
+                {...input}
+                type={type}
+                className="inputVar"
+                placeholder={touched ? error : null}
+            />
         </div>
     </div>
 );
@@ -49,6 +54,7 @@ const LenderFormComponent = (props) => {
 };
 
 export default reduxForm({
-    form: 'secondForm',
+    form: 'lenderForm',
+    destroyOnUnmount: false,
     validate,
 })(LenderFormComponent)

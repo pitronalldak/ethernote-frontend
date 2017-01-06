@@ -13,6 +13,7 @@ import './assets/css/main.css';
 import './assets/css/template.css';
 import './assets/css/templateEditor.css';
 import './assets/css/top.css';
+import './assets/css/react-datepicker.css';
 
 
 render(

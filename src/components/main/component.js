@@ -3,12 +3,15 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import BorrowerFormComponent from './borrowerFormComponent';
+import BorrowerModalComponent from './borrowerModalComponent';
 import LenderFormComponent from './lenderFormComponent';
 
 import Actions from '../../actions/main';
 
 class MainComponent extends Component {
-    state = { step: 1};
+    state = {
+        step: 1
+    };
 
     handleSubmitBorrowerForm = () => {
         this.setState({step: 2});
@@ -109,10 +112,31 @@ class MainComponent extends Component {
                         {/*<span id="$Lenders_Email" class="templateVariable"></span><br/>*/}
                         {/*<span class="templateFieldLabel">Bitcoin Wallet</span>:*/}
                         {/*<span id="$Lenders_Bitcoin_Address" class="templateVariable"></span>-->*/}
-                        <div>The principal amount of <span className="templateVariable"></span> <span className="templateVariable"></span> , with interest at the annual rate of <span className="templateVariable"></span> percent on any unpaid balance.</div>
-                        <div>Payment on this note is due and payable to Lender in full on or before <span className="templateVariable"></span> .</div>
-                        <div>This note may be prepaid in whole or in part at any time without penalty. If Lender prevails in a lawsuit to collect on this note, Borrower agrees to pay Lender's attorney fees in an amount the court finds to be just and reasonable.</div>
-                        <div>The term Borrower refers to one or more borrowers. If there is more than one borrower, they agree to be jointly and severally liable. The term Lender refers to any person who legally holds this note, including a buyer in due course.</div>
+                        <div>
+                            The principal amount of
+                            <span className="templateVariable">
+                                {borrowerForm.values ? borrowerForm.values.currency || undefined : undefined }
+                            </span>
+                            <span className="templateVariable">
+                                {borrowerForm.values ? borrowerForm.values.value || undefined: undefined}
+                            </span> , with interest at the annual rate of
+                            <span className="templateVariable">
+                                {borrowerForm.values ? borrowerForm.values.percents || undefined: undefined}
+                            </span> percent on any unpaid balance.
+                        </div>
+                        <div>
+                            Payment on this note is due and payable to Lender in full on or before
+                            <span className="templateVariable"></span> .
+                        </div>
+                        <div>
+                            This note may be prepaid in whole or in part at any time without penalty. If Lender prevails in a lawsuit to collect on this note,
+                            Borrower agrees to pay Lender's attorney fees in an amount the court finds to be just and reasonable.
+                        </div>
+                        <div>
+                            The term Borrower refers to one or more borrowers. If there is more than one borrower,
+                            they agree to be jointly and severally liable. The term Lender refers to any person who
+                            legally holds this note, including a buyer in due course.
+                        </div>
                     </div>
                     <div className="bottomBar"></div>
                 </div>: null
@@ -131,14 +155,19 @@ class MainComponent extends Component {
                         <div className="templateEditorTitle">
                             Template Editor
                             {this.state.step === 1 ?
-                                <BorrowerFormComponent onSubmit={this.handleSubmitBorrowerForm}/> :
+                                <BorrowerFormComponent
+                                    onSubmit={this.handleSubmitBorrowerForm}
+                                /> :
                                 this.state.step === 2 ?
-                                    <LenderFormComponent onSubmit={this.handleSubmitLenderForm}/> :
+                                    <LenderFormComponent
+                                        onSubmit={this.handleSubmitLenderForm}
+                                    /> :
                                     null
                             }
                         </div>
                     </div>
                 </div>
+                <BorrowerModalComponent show={this.state.showBorrowerModal}/>
             </div>
         );
     }

@@ -35,6 +35,11 @@
 .inputVar.invalid {
   border: solid 1px RGB(233,80,96) !important;
 }
+::-webkit-input-placeholder {color:#c0392b;}
+::-moz-placeholder          {color:#c0392b;}
+:-moz-placeholder           {color:#c0392b;}
+:-ms-input-placeholder      {color:#c0392b;}
+
 .submitContainer {
   padding-top: 20px;
   text-align: right;
